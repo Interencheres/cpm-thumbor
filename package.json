@@ -1,0 +1,25 @@
+{
+  "name": "cpm-thumbor",
+  "version": "1.0.0",
+  "description": "create thumbor url",
+  "main": "thumbor.js",
+  "scripts": {
+    "tests:run": "NODE_ENV=test jest --coverage",
+    "tests:eslint": "eslint .",
+    "tests:syntax": "npm run tests:eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Interencheres/cpm-thumbor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Interencheres/cpm-thumbor/issues"
+  },
+  "homepage": "https://github.com/Interencheres/cpm-thumbor#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "jtest": "0.0.1"
+  }
+}
