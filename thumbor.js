@@ -1,3 +1,5 @@
+"use strict";
+
 const url = require("url");
 const ThumborUrlBuilder = require("@interencheres/thumbor-url-buider");
 const pick = require("lodash/pick");

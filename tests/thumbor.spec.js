@@ -1,3 +1,5 @@
+"use strict";
+
 const CpmThumbor = require("../thumbor");
 
 describe("CpmThumbor test suite", () => {
