@@ -4,7 +4,7 @@
   "description": "create thumbor url",
   "main": "thumbor.js",
   "scripts": {
-    "tests:run": "NODE_ENV=test jest --coverage",
+    "tests:run": "NODE_ENV=test jest --env=node --coverage",
     "tests:eslint": "eslint .",
     "tests:syntax": "npm run tests:eslint"
   },
@@ -18,8 +18,12 @@
     "url": "https://github.com/Interencheres/cpm-thumbor/issues"
   },
   "homepage": "https://github.com/Interencheres/cpm-thumbor#readme",
+  "dependencies": {
+    "@interencheres/thumbor-url-buider": "github:Interencheres/ThumborUrlBuilder",
+    "lodash": "^4.17.11"
+  },
   "devDependencies": {
     "eslint": "^5.16.0",
-    "jtest": "0.0.1"
+    "jest": "^22.4.3"
   }
 }
