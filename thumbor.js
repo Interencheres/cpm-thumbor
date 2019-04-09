@@ -1,6 +1,6 @@
 "use strict";
 
-const url = require("url");
+const Url = require("url-parse");
 const ThumborUrlBuilder = require("@interencheres/thumbor-url-buider");
 const pick = require("lodash/pick");
 const forEach = require("lodash/forEach");
@@ -21,7 +21,7 @@ class CpmThumbor{
     }
 
     buildUrl (mediaUrl, rewriteParameters) {
-        const aUrl = new url.parse(mediaUrl);
+        const url = new Url(mediaUrl);
 
         let transform = {};
         if (rewriteParameters.transform) {
@@ -30,10 +30,10 @@ class CpmThumbor{
 
         const builder = new ThumborUrlBuilder(
             this.THUMBOR_SECURITY_KEY,
-            `//${this.THUMBOR_RESIZE_DOMAINE_PREFIX}.${aUrl.host}`
+            `//${this.THUMBOR_RESIZE_DOMAINE_PREFIX}.${url.host}`
         );
 
-        builder.setImagePath(aUrl.pathname);
+        builder.setImagePath(url.pathname);
 
         if (transform.crop) {
             builder.crop(
