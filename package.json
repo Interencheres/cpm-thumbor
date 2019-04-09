@@ -20,7 +20,8 @@
   "homepage": "https://github.com/Interencheres/cpm-thumbor#readme",
   "dependencies": {
     "@interencheres/thumbor-url-buider": "github:Interencheres/ThumborUrlBuilder",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "url-parse": "^1.4.4"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
