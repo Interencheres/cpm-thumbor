@@ -20,6 +20,58 @@ class CpmThumbor{
         this.THUMBOR_RESIZE_DOMAINE_PREFIX = resizeDomainPrefix;
     }
 
+    getFormat (format) {
+        let back = {};
+        switch (format) {
+            case 'xs':
+                back = { width: 100, height: 75, cropMode: "smart"};
+                break;
+            case 'md':
+                back = { width: 200, height: 200, cropMode: "fitIn"};
+                break;
+            case 'lg':
+                back = { width: 400, height: 400, cropMode: "fitIn"};
+                break;
+            case 'lgcrop':
+                back = { width: 400, height: 300, cropMode: "smart"};
+                break;
+            case 'legacy_vignette':
+                back = { width: 150, height: 113, cropMode: "fitIn"};
+                break;
+            case 'legacy_picture':
+                back = { width: 640, height: 480, cropMode: "fitIn"};
+                break;
+            case 'legacy_jsonhd':
+            case 'pswp':
+                back = { width: 1920, height: 1080, cropMode: "fullFitIn"};
+                break;
+            case 'mdViewGallery':
+                back = { width: 176, height: 132, cropMode: "fullFitIn"};
+                break;
+            case 'original':
+                back = {};
+                break;
+            case 'sm':
+            default:
+                back = { width: 160, height: 120, cropMode: "smart"};
+                break;
+        };
+        return back;
+    }
+
+    generateRewriteImgUrl(mediaUrl, rewriteParameters) {
+        const parametersXs = Object.assign({ ... rewriteParameters }, this.getFormat("xs"));
+        const parametersMd = Object.assign({ ... rewriteParameters }, this.getFormat("md"));
+        const parametersLg = Object.assign({ ... rewriteParameters }, this.getFormat("lg"));
+
+        return {
+            "xs": this.buildUrl(mediaUrl, parametersXs),
+            "md": this.buildUrl(mediaUrl, parametersMd),
+            "lg": this.buildUrl(mediaUrl, parametersLg),
+            "original": this.buildUrl(mediaUrl, {})
+        };
+    }
+
     buildUrl (mediaUrl, rewriteParameters) {
         const url = new Url(mediaUrl);
 
@@ -66,6 +118,9 @@ class CpmThumbor{
             }
             if (rewriteParameters.cropMode === "smart") {
                 builder.smartCrop(true);
+            }
+            if (rewriteParameters.cropMode === "fitIn") {
+                builder.fitIn(width, height);
             }
         }
 
