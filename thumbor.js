@@ -2,8 +2,6 @@
 
 const Url = require("url-parse");
 const ThumborUrlBuilder = require("@interencheres/thumbor-url-buider");
-const pick = require("lodash/pick");
-const forEach = require("lodash/forEach");
 
 const AUTHORIZED_METAS = [
     "brightness",
@@ -75,7 +73,11 @@ class CpmThumbor{
 
         let transform = {};
         if (rewriteParameters.transform) {
-            transform = pick(rewriteParameters.transform, AUTHORIZED_METAS);
+            for (const [key, value] of Object.entries(rewriteParameters.transform)) {
+                if (AUTHORIZED_METAS.includes(key)) {
+                    transform[key] = value;
+                }
+            }
         }
 
         const builder = new ThumborUrlBuilder(
@@ -128,9 +130,8 @@ class CpmThumbor{
     _formatFilters (filters) {
         const formattedFilters = [];
 
-        forEach(
-            filters,
-            (filterValue, filterName) => {
+        Object.entries(filters).forEach(
+            ([filterName, filterValue]) => {
                 switch (filterName) {
                     case "saturation":
                         if (filterValue !== 1) {
