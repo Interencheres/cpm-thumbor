@@ -52,24 +52,22 @@ class CpmThumbor{
                 back = {};
                 break;
             case 'sm':
-            default:
                 back = { width: 160, height: 120, cropMode: "smart"};
                 break;
+            default:
+                throw new Error(`Unknown format: ${format}`);
         };
         return back;
     }
 
-    generateRewriteImgUrl(mediaUrl, rewriteParameters) {
-        const parametersXs = Object.assign({ ... rewriteParameters }, this.getFormat("xs"));
-        const parametersMd = Object.assign({ ... rewriteParameters }, this.getFormat("md"));
-        const parametersLg = Object.assign({ ... rewriteParameters }, this.getFormat("lg"));
+    generateRewriteImgUrl(mediaUrl, rewriteParameters, formats = ["xs", "md", "lg", "original"]) {
+        const res = {};
 
-        return {
-            "xs": this.buildUrl(mediaUrl, parametersXs),
-            "md": this.buildUrl(mediaUrl, parametersMd),
-            "lg": this.buildUrl(mediaUrl, parametersLg),
-            "original": this.buildUrl(mediaUrl, {})
-        };
+        formats.forEach(format => {
+            res[format] = this.buildUrl(mediaUrl, { ... rewriteParameters, ... this.getFormat(format) })
+        })
+
+        return res;
     }
 
     buildUrl (mediaUrl, rewriteParameters) {
