@@ -19,12 +19,11 @@
   },
   "homepage": "https://github.com/Interencheres/cpm-thumbor#readme",
   "dependencies": {
-    "@interencheres/thumbor-url-buider": "git+https://github.com/Interencheres/ThumborUrlBuilder",
-    "lodash": "^4.17.15",
-    "url-parse": "^1.4.4"
+    "@interencheres/thumbor-url-buider": "git+https://github.com/Interencheres/ThumborUrlBuilder.git",
+    "url-parse": "^1.4.7"
   },
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "jest": "^24.4.3"
+    "eslint": "^7.2.0",
+    "jest": "^26.0.0"
   }
 }
