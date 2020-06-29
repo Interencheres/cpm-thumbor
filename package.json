@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Interencheres/cpm-thumbor#readme",
   "dependencies": {
-    "@interencheres/thumbor-url-buider": "git+https://github.com/Interencheres/ThumborUrlBuilder.git",
+    "@interencheres/thumbor-url-buider": "git+https://github.com/Interencheres/ThumborUrlBuilder.git#v1.0.0",
     "url-parse": "^1.4.7"
   },
   "devDependencies": {
