@@ -1,13 +1,13 @@
 # cpm-thumbor
 
-this module allows you to build thumbor media urls 
+this module allows you to build thumbor media urls
 
 # Usage
 
 
 ### Useful usage
 ```
-let thumbor = new Thumbor(config.thumbor.thumborSecret, config.thumbor.resizeDomainPrefix);
+let thumbor = new Thumbor(config.thumbor.resizeDomainPrefix, config.thumbor.thumborSecret);
 
 let urlThumbor = thumbor.generateRewriteImgUrl(media.url, media.trans);
 

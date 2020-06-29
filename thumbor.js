@@ -13,7 +13,7 @@ const AUTHORIZED_METAS = [
 ];
 
 class CpmThumbor{
-    constructor (securityKey, resizeDomainPrefix) {
+    constructor (resizeDomainPrefix, securityKey) {
         this.THUMBOR_SECURITY_KEY = securityKey;
         this.THUMBOR_RESIZE_DOMAINE_PREFIX = resizeDomainPrefix;
     }
@@ -81,8 +81,8 @@ class CpmThumbor{
         }
 
         const builder = new ThumborUrlBuilder(
-            this.THUMBOR_SECURITY_KEY,
-            `//${this.THUMBOR_RESIZE_DOMAINE_PREFIX}.${url.host}`
+            `//${this.THUMBOR_RESIZE_DOMAINE_PREFIX}.${url.host}`,
+            this.THUMBOR_SECURITY_KEY
         );
 
         builder.setImagePath(url.pathname);
