@@ -6,11 +6,31 @@ this module allows you to build thumbor media urls
 
 
 ### Useful usage
+
+More information on hashFn [here](https://github.com/Interencheres/ThumborUrlBuilder/blob/master/README.md)
+
 ```
-let thumbor = new Thumbor(config.thumbor.resizeDomainPrefix, config.thumbor.thumborSecret);
-
-let urlThumbor = thumbor.generateRewriteImgUrl(media.url, media.trans);
-
+// Browser & NodeJS compatible
+const crypto = require('crypto-js');
+const hashFn = (stringToHash, secret) => {
+    const key = crypto.HmacSHA1(stringToHash, this.THUMBOR_SECURITY_KEY);
+    const hash = crypto.enc.Base64.stringify(key);
+    return hash.replace(/\+/g, '-').replace(/\//g, '_');
+}
+```
+```
+// NodeJS compatible (faster hash && no deps)
+const crypto = require('crypto');
+const hashFn = (stringToHash, secret) => {
+    const hmac = crypto.createHmac('sha1', secret);
+    hmac.update(stringToHash);
+    const hash = hmac.digest('base64');
+    return hash.replace(/\+/g, '-').replace(/\//g, '_');
+}
+```
+```
+const thumbor = new Thumbor(config.thumbor.resizeDomainPrefix, config.thumbor.thumborSecret, hashFn);
+const urlThumbor = thumbor.generateRewriteImgUrl(media.url, media.trans);
 ```
 
 It provide an object with the 4 Formats we used on Interencheres
