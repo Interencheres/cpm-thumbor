@@ -13,7 +13,7 @@ More information on hashFn [here](https://github.com/Interencheres/ThumborUrlBui
 // Browser & NodeJS compatible
 const crypto = require('crypto-js');
 const hashFn = (stringToHash, secret) => {
-    const key = crypto.HmacSHA1(stringToHash, this.THUMBOR_SECURITY_KEY);
+    const key = crypto.HmacSHA1(stringToHash, secret);
     const hash = crypto.enc.Base64.stringify(key);
     return hash.replace(/\+/g, '-').replace(/\//g, '_');
 }
