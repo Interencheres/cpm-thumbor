@@ -70,7 +70,7 @@ class CpmThumbor{
     }
 
     buildUrl (mediaUrl, rewriteParameters) {
-        const url = new Url(mediaUrl);
+        const url = mediaUrl.startsWith("//") ? new Url(`http:${mediaUrl}`) : new Url(mediaUrl);
 
         let transform = {};
         if (rewriteParameters.transform) {
