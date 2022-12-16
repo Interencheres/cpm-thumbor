@@ -81,8 +81,15 @@ class CpmThumbor{
             }
         }
 
+        let host;
+        if (this.THUMBOR_RESIZE_DOMAINE_PREFIX === "" || this.THUMBOR_RESIZE_DOMAINE_PREFIX == null) {
+            host = url.host;
+        } else {
+            host = `${this.THUMBOR_RESIZE_DOMAINE_PREFIX}.${url.host}`;
+        }
+
         const builder = new ThumborUrlBuilder(
-            `//${this.THUMBOR_RESIZE_DOMAINE_PREFIX}.${url.host}`,
+            `//${host}`,
             this.THUMBOR_SECURITY_KEY,
             this.THUMBOR_HASH_FN
         );
