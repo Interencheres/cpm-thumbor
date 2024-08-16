@@ -24,9 +24,7 @@ const crypto = require('crypto');
 const hashFn = (stringToHash, secret) => {
     const hmac = crypto.createHmac('sha1', secret);
     hmac.update(stringToHash);
-    const hash = hmac.digest('base64');
-    return hash.replace(/\+/g, '-').replace(/\//g, '_');
-}
+    return hmac.digest('base64url') + '=';
 ```
 ```js
 const thumbor = new Thumbor(config.thumbor.resizeDomainPrefix, config.thumbor.thumborSecret, hashFn);
